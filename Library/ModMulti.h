@@ -1,4 +1,3 @@
-// Mod - Multiply
 template<class T>
 T modmul( T a, T b, T m = MOD){
 	T result = 0;
@@ -10,5 +9,3 @@ T modmul( T a, T b, T m = MOD){
 	}
 	return result;
 }
-
-

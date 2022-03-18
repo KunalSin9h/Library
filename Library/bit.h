@@ -18,4 +18,7 @@ int sum(int r){
 int sum(int l, int r){
     return sum(r) - sum(l-1);
 }
+int get_element(int i){
+    return sum(i, i);
+}
 };

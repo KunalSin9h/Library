@@ -7,4 +7,3 @@ T lstTrue(T lo, T hi, U fun){
 	}
 	return lo;
 }
-

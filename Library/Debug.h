@@ -1,3 +1,14 @@
+#pragma once
+
+#include <iostream>
+#include <string>
+#include <utility>
+
+using std::cerr;
+using std::string;
+using std::pair;
+
+
 void __print(int x) {std::cerr << x;}
 void __print(long x) {std::cerr << x;}
 void __print(long long x) {std::cerr << x;}

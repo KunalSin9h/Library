@@ -1,4 +1,4 @@
-#ifndef  ONLINE_JUDGE
+#ifdef  LOCAL
 #include "C:\Debug.h"
 #else
 #define dbg(x...) 

@@ -1,5 +1,4 @@
-template<typename T>
-class M_queue{
+template<typename T> struct mqueue{
 private:
     typedef std::array<std::stack<T> , 3> AST;
     AST left, right;

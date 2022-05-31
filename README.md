@@ -1,2 +1,2 @@
 # Library of Book Codes
-Book Code for Competative Coding
+Book Code for Competative Programming

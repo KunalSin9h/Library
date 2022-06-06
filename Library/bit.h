@@ -123,3 +123,44 @@ struct Fenwick{
         return range_query(i, i);
     }
 };
+
+// min element [0, r] 
+struct FenwickMin{
+    std::vector<int> T;
+    int N;
+    const int inf = int(2e9);
+    FenwickMin(int n):N{n}{T.assign(N, inf);}
+    FenwickMin(std::vector<int> &A): FenwickMin((int)A.size()){
+        for(int i = 0;i<N; ++i) update(i, A[i]);
+    }
+    void update(int i, int x){
+        assert(i < N);
+        for(; i<N; i = (i|(i+1))) T[i] = std::min(T[i], x);
+    }
+    int getmin(int r){
+        assert(r < N);
+        int res = inf;
+        for(; r >= 0; r = (r&(r+1))-1) res = std::min(res, T[r]);
+        return res;
+    }
+};
+
+// max element [0, r]
+struct FenwickMax{
+    std::vector<int> T;
+    int N;
+    FenwickMax(int n):N{n}{T.assign(N, -1);}
+    FenwickMax(std::vector<int> &A): FenwickMax((int)A.size()){
+        for(int i = 0;i<N; ++i) update(i, A[i]);
+    }
+    void update(int i, int x){
+        assert(i < N);
+        for(; i<N; i = (i|(i+1))) T[i] = std::max(T[i], x);
+    }
+    int getmax(int r){
+        assert(r < N);
+        int res = -1;
+        for(; r >= 0; r = (r&(r+1))-1) res = std::max(res, T[r]);
+        return res;
+    }
+};

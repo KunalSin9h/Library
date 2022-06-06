@@ -10,7 +10,7 @@ public:
         return fun_(std::ref(*this), std::forward<Args>(args)...);
     }
 };
- 
+
 template<class Fun>
 decltype(auto) y_combinator(Fun &&fun) {
     return y_combinator_result<std::decay_t<Fun>>(std::forward<Fun>(fun));

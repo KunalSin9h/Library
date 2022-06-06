@@ -1,4 +1,3 @@
-#pragma once
 #include <cassert>
 #include <cstdarg>
 #include <cstdio>

@@ -74,7 +74,7 @@ public:
 template<typename T> T modpow(T a, uint64_t b){
     T c = 1;
     for(; b; (b >>= 1), a *= a){
-        if(b&1) c *= a;
+        c *= max<T>(1, a*(b&1));
     }
     return c;
 }

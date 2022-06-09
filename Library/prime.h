@@ -57,4 +57,19 @@ vector<pair<int64_t, int>> prime_factorize(int64_t n){
     return result;
 }
 
+vector<int64_t> divisors(int64_t x){
+    vector<int64_t> res{1};
+    for(auto p : prime_factorize(x)){
+        for(int sz = (int)res.size(), i = sz -1; i >= 0; --i){
+            int64_t l = res[i];
+            for(int j = 0; j < p.second; ++j){
+                l *= p.first;
+                res.emplace_back(l);
+            }
+        }
+    }
+    sort(res.begin(), res.end());
+    return res;
+}
+
 constexpr int sieve_max = int(1e6) + 10;

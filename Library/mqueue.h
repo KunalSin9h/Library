@@ -30,19 +30,28 @@ public:
         refill();
         pop_3(left);
     }
-
+    
+    bool empty(){
+        return (left[0].empty() && right[0].empty());
+    } 
+    int size(){
+        return left[0].size() && right[0].size();
+    }
     T front(){
-        assert(left[0].size() != 0 && "Left Stack is Empty !!");
+        refill();
+        assert(!empty());
         return left[0].top();
     }
     T min(){
-        T a = left[1].empty()?LLONG_MAX:left[1].top();
-        T b = right[1].empty()?LLONG_MAX:right[1].top();
+        T a = left[1].empty()?numeric_limits<T>::max():left[1].top();
+        T b = right[1].empty()?numeric_limits<T>::max():right[1].top();
+        assert(!empty());
         return std::min<T>(a, b);
     }
     T max(){
-        T a = left[2].empty()?LLONG_MIN:left[2].top();
-        T b = right[2].empty()?LLONG_MIN:right[2].top();
+        T a = left[2].empty()?numeric_limits<T>::min():left[2].top();
+        T b = right[2].empty()?numeric_limits<T>::min():right[2].top();
+        assert(!empty());
         return std::max<T>(a, b);
     }
 };

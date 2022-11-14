@@ -2,37 +2,37 @@ vector<int> least_prime_factor;
 vector<int> all_primes;
 vector<bool> check_prime;
 
-void run_sieve(int max_n){
-    least_prime_factor.resize(max_n + 1, 0); 
+void run_sieve(int max_n) {
+    least_prime_factor.resize(max_n + 1, 0);
     check_prime.resize(max_n + 1, true);
     check_prime[0] = check_prime[1] = false;
-        
-    for(int i = 2; i <= max_n; ++i)
-        if(check_prime[i]){
+
+    for (int i = 2; i <= max_n; ++i)
+        if (check_prime[i]) {
             least_prime_factor[i] = i;
             all_primes.emplace_back(i);
-            for(int64_t j = int64_t(i)*i; j <= max_n; j += i)
-                if(check_prime[j]){
+            for (int64_t j = int64_t(i) * i; j <= max_n; j += i)
+                if (check_prime[j]) {
                     check_prime[j] = false;
                     least_prime_factor[j] = i;
                 }
         }
 }
 
-vector<pair<int64_t, int>> prime_factorize(int64_t n){
-    int64_t sieve_max = int64_t(least_prime_factor.size()) - 1;  
-    assert(1 <= n && n <= sieve_max*sieve_max);
-    vector<pair<int64_t, int>> result;
+vector <pair<int64_t, int>> prime_factorize(int64_t n) {
+    int64_t sieve_max = int64_t(least_prime_factor.size()) - 1;
+    assert(1 <= n && n <= sieve_max * sieve_max);
+    vector <pair<int64_t, int>> result;
 
-    if(n <= sieve_max){
-        while(n != 1){
+    if (n <= sieve_max) {
+        while (n != 1) {
             int64_t p = least_prime_factor[n];
             int expo = 0;
-            
-            do{
+
+            do {
                 n /= p;
                 expo++;
-            } while(n%p == 0);
+            } while (n % p == 0);
 
             result.emplace_back(p, expo);
 
@@ -40,30 +40,31 @@ vector<pair<int64_t, int>> prime_factorize(int64_t n){
         return result;
     }
 
-    for(int64_t p : all_primes){
-        if(p*p > n)break; 
-        if(n%p == 0){
+    for (int64_t &p: all_primes) {
+        if (p * p > n)break;
+        if (n % p == 0) {
             int expo = 0;
-            do{
+            do {
                 n /= p;
                 expo++;
-            }while(n%p == 0);
+            } while (n % p == 0);
             result.emplace_back(p, expo);
         }
     }
-         
-    if(n > 1) result.emplace_back(n, 1); 
+
+    if (n > 1) result.emplace_back(n, 1);
 
     return result;
 }
 
-vector<int64_t> divisors(int64_t x){
-    vector<int64_t> res{1};
-    for(auto p : prime_factorize(x)){
-        for(int sz = (int)res.size(), i = sz -1; i >= 0; --i){
+vector <int64_t> divisors(int64_t x) {
+    assert(x <= int64_t(1e12) && "prime_factorize(x) is only valid upto sqrt(x) <= 1e6");
+    vector <int64_t> res{1};
+    for (auto &[prm, expo]: prime_factorize(x)) {
+        for (int sz = (int) res.size(), i = sz - 1; i >= 0; --i) {
             int64_t l = res[i];
-            for(int j = 0; j < p.second; ++j){
-                l *= p.first;
+            for (int j = 0; j < expo; ++j) {
+                l *= prm;
                 res.emplace_back(l);
             }
         }

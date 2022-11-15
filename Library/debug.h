@@ -6,11 +6,14 @@
 #include <vector>
 #include <queue>
 #include <stack>
+#include <bitset>
+#include <tuple>
 
 using std::cerr;
 using std::string;
 using std::pair;
 using std::vector;
+using std::endl;
 
 void __print(int x) { std::cerr << x; }
 
@@ -63,6 +66,12 @@ void _print(T t, V... v) {
     __print(t);
     if (sizeof...(v)) std::cerr << ", ";
     _print(v...);
+}
+
+// For bitset<size_t>
+template<size_t bits>
+void _print(const std::bitset <bits> &b) {
+    cerr << "{" << b << "}]" << '\n';
 }
 
 // for 2D vector

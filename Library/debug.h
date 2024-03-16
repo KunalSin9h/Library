@@ -81,7 +81,7 @@ void _print(const std::vector <vector<T>> &x) {
     n <<= 1;
     n--;
     int m = n;
-    std::cerr << ";)";
+    std::cerr << x.size() << " x " << x[0].size();
     _print();
     while (n--)std::cerr << '-';
     std::cerr << '\n';

@@ -1,5 +1,8 @@
 struct Dsu {
-    std::vector<int> parent, rank, size;
+private:
+    std::vector<int> parent, rank;
+public:
+    std::vector<int> size;
 
     Dsu(int n) {
         parent.resize(n, 0);
